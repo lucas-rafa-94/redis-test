@@ -1,0 +1,21 @@
+replicaCount: 1
+app: redis-qa-spring
+namespace: default
+cpu:
+  request: 100m
+  limit: 300m
+memory:
+  request: 1000Mi
+  limit: 2100Mi
+image:
+  repository: lucassantoss/redis
+  tag: :4.0
+  name: redis-qa-spring
+  port: 8080
+env:
+  option9_name: redis_host
+  option9_value: 35.184.75.41
+  option10_name: redis_port
+  option10_value: 6379
+  option11_name: redis_pass
+  option11_value: g1qelucYpj

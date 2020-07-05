@@ -1,0 +1,4 @@
+redis:
+  port: ${redis_port:6379}
+  host: ${redis_host:35.184.75.41}
+  pass: ${redis_pass:g1qelucYpj}

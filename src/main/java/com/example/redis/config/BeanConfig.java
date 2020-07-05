@@ -1,5 +1,6 @@
 package com.example.redis.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisPassword;
@@ -10,12 +11,20 @@ import org.springframework.data.redis.core.RedisTemplate;
 @Configuration
 public class BeanConfig {
 
+    @Value("${redis.host}")
+    private String host;
+    @Value("#{new Integer('${redis.port}')}")
+    private Integer port;
+    @Value("${redis.pass}")
+    private String password;
+
     @Bean
     JedisConnectionFactory jedisConnectionFactory() {
-        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration("35.184.75.41", 6379);
-        redisStandaloneConfiguration.setPassword(RedisPassword.of("g1qelucYpj"));
+        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(host, port);
+        redisStandaloneConfiguration.setPassword(RedisPassword.of(password));
         return new JedisConnectionFactory(redisStandaloneConfiguration);
     }
+
 
     @Bean
     public RedisTemplate redisTemplate() {
